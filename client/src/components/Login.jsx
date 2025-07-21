@@ -165,7 +165,7 @@ function RegistrationForm() {
   }
 
   return (
-    <div className="login-background" style={{ position: 'relative', overflow: 'hidden' }}>
+    <div className="login-background" style={{ minHeight: '100vh', width: '100vw', display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative', overflow: 'hidden' }}>
       {/* Animated background */}
       <Particles
         id="tsparticles"
@@ -218,9 +218,7 @@ function RegistrationForm() {
         initial={{ opacity: 0, y: 100 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: 'easeOut' }}
-        style={{ position: 'relative', zIndex: 1 }}
-        drag
-        dragConstraints={{ top: -200, left: -400, right: 400, bottom: 200 }}
+        style={{ position: 'relative', zIndex: 1, margin: '0 auto' }}
       >
         <h2>Register</h2>
         <form onSubmit={handleSubmit} autoComplete="off">
