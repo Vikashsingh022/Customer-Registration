@@ -1,0 +1,271 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+body, .login-background, .login-glass, .login-glass input, .login-glass select, .login-glass textarea, .register-btn, .login-glass h2, .login-glass label, .login-glass .error-msg {
+  font-style: italic;
+}
+
+.login-background {
+  min-height: 100vh;
+  background: #181c20;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Roboto', sans-serif;
+}
+
+.login-glass {
+  background: #7B7B7B;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  padding: 40px 32px;
+  width: 750px;
+  max-width: 95vw;
+  color: #fff;
+  text-align: center;
+}
+
+.login-glass h2 {
+  margin-bottom: 24px;
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.login-glass input[type="text"],
+.login-glass input[type="email"],
+.login-glass input[type="password"],
+.login-glass input[type="date"],
+.textarea-input,
+.latlong-input {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border: none;
+  border-radius: 8px;
+  background: #444;
+  color: #fff;
+  font-size: 1rem;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.login-glass input::placeholder {
+  color: #eee;
+}
+
+.login-options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px 0 20px 0;
+  font-size: 0.95rem;
+}
+
+.forgot-link {
+  color: #fff;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.login-glass button {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  background: #fff;
+  color: #222;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-bottom: 10px;
+  transition: background 0.2s;
+}
+
+.login-glass button:hover {
+  background: #eee;
+}
+
+.register-link {
+  margin-top: 10px;
+  font-size: 0.95rem;
+}
+
+.register-link a {
+  color: #fff;
+  text-decoration: underline;
+  cursor: pointer;
+} 
+
+.form-columns {
+  display: flex;
+  gap: 24px;
+}
+
+.form-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.form-item {
+  transition: filter 0.3s, transform 0.2s;
+}
+.form-item.blurred {
+  filter: blur(3px) brightness(0.7);
+}
+.form-item.focused {
+  transform: scale(1.05);
+  z-index: 10;
+}
+
+@media (max-width: 800px) {
+  .login-glass {
+    width: 98vw;
+    min-width: unset;
+    padding: 16px 2vw;
+  }
+  .form-columns {
+    flex-direction: column;
+    gap: 0;
+  }
+}
+
+@media (max-width: 500px) {
+  .login-glass {
+    padding: 8px 0.5vw;
+    width: 100vw;
+    border-radius: 0;
+  }
+  .form-col {
+    padding: 0 2vw;
+  }
+  .login-glass h2 {
+    font-size: 1.3rem;
+  }
+  .register-btn {
+    font-size: 1rem;
+    padding: 10px;
+  }
+  .select-input, .textarea-input, .latlong-input, .login-glass input[type="text"], .login-glass input[type="email"], .login-glass input[type="password"], .login-glass input[type="date"] {
+    font-size: 0.95rem;
+    padding: 10px;
+  }
+}
+
+.error-msg {
+  color: salmon;
+  font-size: 13px;
+  margin-bottom: 4px;
+  text-align: left;
+}
+
+.select-input {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border-radius: 8px;
+  background: #444;
+  color: #fff;
+  border: none;
+}
+
+.textarea-input {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border-radius: 8px;
+  background: rgba(255,255,255,0.15);
+  color: #fff;
+  border: none;
+  resize: vertical;
+}
+
+.latlong-input {
+  flex: 1;
+  background: rgba(255,255,255,0.15);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 12px;
+}
+
+.register-btn {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  background: #0C0C0C;
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 18px;
+  transition: background 0.2s;
+}
+
+.register-btn:hover {
+  background: #eee;
+  color: #0C0C0C;
+} 
+
+.login-glass .register-btn {
+  width: fit-content;
+  min-width: 120px;
+  display: block;
+  margin: 18px auto 0 auto;
+  padding: 12px 32px;
+  border: none;
+  border-radius: 8px;
+  background: #5A5A5A;
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+  font-style: italic;
+}
+
+.login-glass .register-btn:hover {
+  background: #eee;
+  color: #0C0C0C;
+} 
+
+.char-count {
+  font-size: 0.95rem;
+  color: #eee;
+  text-align: right;
+  margin-top: -8px;
+  margin-bottom: 8px;
+  font-style: italic;
+} 
+
+.password-strength {
+  margin-top: 4px;
+  margin-bottom: 4px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.strength-bar {
+  width: 60px;
+  height: 6px;
+  border-radius: 4px;
+  background: #eee;
+  transition: background 0.3s;
+} 
+
+.map-preview {
+  width: 100%;
+  margin-top: 8px;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+} 
