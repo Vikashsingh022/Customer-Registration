@@ -1,25 +1,35 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const cors = require('cors');
-const mysql = require('mysql2');
+const express = require("express");
+const mysql = require("mysql");
 const bcrypt = require('bcrypt');
-
+const cors = require('cors');
+const bodyParser = require('body-parser');
 const app = express();
+
+const connection = mysql.createConnection({
+  host: process.env.DB_HOST,
+  port: process.env.DB_PORT,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME,
+});
+
+connection.connect((err) => {
+  if (err) {
+    console.error("❌ DB connection failed:", err);
+    process.exit(1);
+  }
+  console.log("✅ Connected to MySQL database!");
+});
+
 app.use(cors());
 app.use(bodyParser.json());
 
-// Set up MySQL connection
-const db = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: 'Vikash@1',
-  database: 'user_registration',
-  port: 3306 // optional, since 3306 is default
-});
-
-db.connect(err => {
-  if (err) throw err;
-  console.log('Connected to MySQL');
+// List all users
+app.get("/", (req, res) => {
+  connection.query("SELECT * FROM users", (err, results) => {
+    if (err) return res.status(500).send("DB Error");
+    res.send(results);
+  });
 });
 
 // Registration endpoint
@@ -36,7 +46,7 @@ app.post('/register', async (req, res) => {
       (full_name, email, phone, gender, dob, address, password_hash, latitude, longitude)
       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`;
 
-    db.query(sql, [
+    connection.query(sql, [
       fullName, email, phone, gender, dob, address,
       password_hash, latitude, longitude
     ], (err, result) => {
@@ -56,7 +66,7 @@ app.post('/register', async (req, res) => {
 app.get('/user-by-phone/:phone', (req, res) => {
   const { phone } = req.params;
   const sql = 'SELECT * FROM users WHERE phone = ? LIMIT 1';
-  db.query(sql, [phone], (err, results) => {
+  connection.query(sql, [phone], (err, results) => {
     if (err) {
       console.error(err);
       return res.status(500).send('Database error');
@@ -68,5 +78,6 @@ app.get('/user-by-phone/:phone', (req, res) => {
   });
 });
 
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`)); 
+app.listen(process.env.PORT || 10000, () => {
+  console.log("🚀 Server running on port", process.env.PORT || 10000);
+}); 
