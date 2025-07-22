@@ -74,6 +74,7 @@ CREATE TABLE users (
 
 cd server
 npm install
+npm install dotenv
 
 create .env file
 PORT=5000
